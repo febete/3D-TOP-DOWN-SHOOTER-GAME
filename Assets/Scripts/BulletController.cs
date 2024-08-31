@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,7 @@ public class BulletController : MonoBehaviour
     public float speed = 10f; // Merminin hızı
     public int damage = 10; // Merminin vereceği hasar
 
-    private void OnEnable()
-    {
-        // Mermi etkinleştirildiğinde hareket etmeye başla
-        // Mermiyi belirli bir süre sonra devre dışı bırak (opsiyonel)
-        Invoke("DisableBullet", 5f);
-    }
+
 
     void Update()
     {
@@ -20,27 +16,42 @@ public class BulletController : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+
+
+    void OnTriggerEnter(Collider other)
     {
-        /*
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             // Düşmanla çarpışma durumunda hasar ver
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
+            /*
+                        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                        if (enemy != null)
+                        {
+                            enemy.TakeDamage(damage);
+                        }
+            */
+            // Mermiyi havuza geri döndür
 
-            // Mermiyi yok et
-            gameObject.SetActive(false);
+            print(other.name + "çarpışma gerçekleşti");
+            ReturnToPool();
         }
-        */
+
     }
 
-    private void DisableBullet()
+
+
+    // Belirli bir süre sonra mermiyi havuza geri döndürmek için
+    private void OnEnable()
     {
-        // Mermiyi otomatik olarak devre dışı bırak
-        gameObject.SetActive(false);
+        Invoke("ReturnToPool", 5f);
+    }
+
+
+
+    // Mermiyi havuza geri döndüren method
+    void ReturnToPool()
+    {
+        ObjectPooler.Instance.ReturnObject(gameObject);
     }
 }

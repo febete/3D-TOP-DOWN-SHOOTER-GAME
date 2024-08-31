@@ -10,11 +10,8 @@ public class PlayerController : MonoBehaviour
 
     //Bullet
     public Transform firePoint; // Merminin ateş edileceği nokta
-    public GameObject bulletPrefab; // Mermi prefab'ı
     public float fireRate = 0.5f; // Mermi atış aralığı (saniye cinsinden)
-
     private float nextFireTime = 0f; // Son atış zamanı
-
 
 
     //Handling
@@ -99,9 +96,11 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        // Mermiyi oluştur
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        // Mermiyi yönlendir ve ateş et
+        // Havuzdan bir mermi al ve ateş et
+        GameObject bullet = ObjectPooler.Instance.GetObject();
+        bullet.transform.position = firePoint.position;
+        bullet.transform.rotation = firePoint.rotation;
         bullet.transform.forward = firePoint.forward;
     }
+
 }
