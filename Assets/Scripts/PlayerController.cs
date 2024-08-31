@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 0.5f; // Mermi atış aralığı (saniye cinsinden)
     private float nextFireTime = 0f; // Son atış zamanı
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSFX;
+
 
     //Handling
     public float rotationSpeed = 450;
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();  // Animator bileşenini al
 
         animator.SetBool("isIdle", true);
+
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -105,6 +110,8 @@ public class PlayerController : MonoBehaviour
         bullet.transform.position = firePoint.position;
         bullet.transform.rotation = firePoint.rotation;
         bullet.transform.forward = firePoint.forward;
+
+        audioSource.PlayOneShot(shootSFX);
     }
 
 }

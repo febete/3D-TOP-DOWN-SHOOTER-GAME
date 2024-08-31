@@ -9,11 +9,11 @@ public class BulletController : MonoBehaviour
     public int damage = 10; // Merminin vereceği hasar
 
 
-
     void Update()
     {
         // Mermiyi ileriye doğru hareket ettir
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
     }
 
 
