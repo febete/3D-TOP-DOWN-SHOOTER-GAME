@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip shootSFX;
 
 
+    public ParticleSystem MuzzleFlash;
+
+
     //Handling
     public float rotationSpeed = 450;
     public float walkSpeed = 5;
@@ -112,6 +115,7 @@ public class PlayerController : MonoBehaviour
         bullet.transform.forward = firePoint.forward;
 
         audioSource.PlayOneShot(shootSFX);
+        MuzzleFlash.Play();
     }
 
 }
