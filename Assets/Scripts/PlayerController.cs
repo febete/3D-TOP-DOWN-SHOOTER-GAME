@@ -79,14 +79,18 @@ public class PlayerController : MonoBehaviour
 
 
         // Boşluk tuşuna basılı olup olmadığını kontrol et
-        if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Ateş Ediyor");
-            animator.SetBool("isFire", true);
+            if (Time.time >= nextFireTime)
+            {
+                Debug.Log("Ateş Ediyor");
+                animator.SetBool("isFire", true);
 
-            Shoot();
-            nextFireTime = Time.time + fireRate; // Bir sonraki atış zamanı
+                Shoot();
+                nextFireTime = Time.time + fireRate; // Bir sonraki atış zamanı
+            }
         }
+
         else
         {
             animator.SetBool("isFire", false);
