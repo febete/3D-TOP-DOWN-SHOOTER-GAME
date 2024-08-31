@@ -7,8 +7,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab; // Düşman prefab'ı
     public Transform[] spawnPoints; // Spawn noktalarının dizisi
 
-    public float initialSpawnDelay = 5f; // İlk spawn gecikmesi
-    public float spawnInterval = 20f; // Düşman spawnlama aralığı (saniye)
+    public float initialSpawnDelay; // İlk spawn gecikmesi
+    public float spawnInterval; // Düşman spawnlama aralığı (saniye)
 
     private bool canSpawn = true; // Düşman spawnlamaya izin verip vermediğini kontrol eden değişken
 

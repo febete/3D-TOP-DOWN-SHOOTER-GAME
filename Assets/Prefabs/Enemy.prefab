@@ -175,3 +175,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2904071457344252253}
   Player: {fileID: 0}
+  health: 100

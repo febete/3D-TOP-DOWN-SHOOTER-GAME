@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float speed = 10f; // Merminin hızı
-    public int damage = 10; // Merminin vereceği hasar
+    public int damage; // Merminin vereceği hasar
 
 
     void Update()
@@ -24,13 +24,13 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             // Düşmanla çarpışma durumunda hasar ver
-            /*
-                        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-                        if (enemy != null)
-                        {
-                            enemy.TakeDamage(damage);
-                        }
-            */
+
+            EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+
             // Mermiyi havuza geri döndür
 
             print(other.name + "çarpışma gerçekleşti");
