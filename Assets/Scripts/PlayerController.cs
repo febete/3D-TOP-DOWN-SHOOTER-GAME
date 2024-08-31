@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,16 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+
+    //Bullet
+    public Transform firePoint; // Merminin ateş edileceği nokta
+    public GameObject bulletPrefab; // Mermi prefab'ı
+    public float fireRate = 0.5f; // Mermi atış aralığı (saniye cinsinden)
+
+    private float nextFireTime = 0f; // Son atış zamanı
+
+
+
     //Handling
     public float rotationSpeed = 450;
     public float walkSpeed = 5;
@@ -71,15 +82,26 @@ public class PlayerController : MonoBehaviour
 
 
         // Boşluk tuşuna basılı olup olmadığını kontrol et
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
         {
             Debug.Log("Ateş Ediyor");
             animator.SetBool("isFire", true);
+
+            Shoot();
+            nextFireTime = Time.time + fireRate; // Bir sonraki atış zamanı
         }
         else
         {
             animator.SetBool("isFire", false);
         }
 
+    }
+
+    void Shoot()
+    {
+        // Mermiyi oluştur
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        // Mermiyi yönlendir ve ateş et
+        bullet.transform.forward = firePoint.forward;
     }
 }
