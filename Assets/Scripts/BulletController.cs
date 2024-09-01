@@ -33,7 +33,7 @@ public class BulletController : MonoBehaviour
 
             // Mermiyi havuza geri döndür
 
-            print(other.name + "çarpışma gerçekleşti");
+            print(other.name + "çarpişma gerçekleşti");
             ReturnToPool();
         }
 

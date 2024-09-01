@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         bool isMoving = input.magnitude > 0;
         if (isMoving)
         {
-            Debug.Log("karakter hareket ediyor");
+            Debug.Log("Karakter hareket ediyor");
             targetRotation = Quaternion.LookRotation(input);
             transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
         }

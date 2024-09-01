@@ -25,9 +25,5 @@ public class CameraController : MonoBehaviour
         // Kamera pozisyonunu yumuşak bir şekilde hedef pozisyona geçiş yaparak ayarla
         transform.position = Vector3.Lerp(transform.position, cameraTarget, Time.deltaTime * 8);
 
-
-
-        //cameraTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
-        //transform.position = Vector3.Lerp(transform.position, cameraTarget, Time.deltaTime * 8);
     }
 }
